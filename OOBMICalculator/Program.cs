@@ -1,24 +1,24 @@
-﻿using System;
+﻿using Autofac;
+using OOBMICalculator.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace OOBMICalculator
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("請輸入身高?");
-            decimal tall;
-            decimal.TryParse(Console.ReadLine(), out tall);
+            var container = AutofacConfiger.ConfigureContainer();
 
-            Console.WriteLine("請輸入體重?");
-            decimal weight;
-            decimal.TryParse(Console.ReadLine(), out weight);
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var app = scope.Resolve<IApplication>();
 
-            Console.WriteLine($"身高:{tall}, 體重:{weight}");
-
-            Console.Read();
+                app.Run();
+            }
         }
     }
 }
