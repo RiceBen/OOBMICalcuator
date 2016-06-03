@@ -1,7 +1,5 @@
 ﻿using OOBMICalculator.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OOBMICalculator.Services
 {
