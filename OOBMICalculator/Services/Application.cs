@@ -13,15 +13,17 @@ namespace OOBMICalculator.Services
         /// </summary>
         public void Run()
         {
-            Console.WriteLine("請輸入身高?");
+            Console.WriteLine("請輸入身高(cm)?");
             decimal tall;
             decimal.TryParse(Console.ReadLine(), out tall);
 
-            Console.WriteLine("請輸入體重?");
+            Console.WriteLine("請輸入體重(kg)?");
             decimal weight;
             decimal.TryParse(Console.ReadLine(), out weight);
 
-            Console.WriteLine($"身高:{tall}, 體重:{weight}");
+            var BMI = (double)weight / Math.Pow((double)tall / 100, 2.0);
+
+            Console.WriteLine($"身高:{tall}, 體重:{weight}, BMI:{BMI:0.000}");
 
             Console.Read();
         }
