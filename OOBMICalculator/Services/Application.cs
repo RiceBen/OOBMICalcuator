@@ -12,15 +12,19 @@ namespace OOBMICalculator.Services
         /// 建構子
         /// </summary>
         /// <param name="bmiCalculator">IBMICalculatorService</param>
-        public Application(IBMICalculatorService bmiCalculator)
+        /// <param name="bmiConsultant">IBMIConsultant</param>
+        public Application(IBMICalculatorService bmiCalculator, IBMIConsultant bmiConsultant)
         {
             this.BMICalculatorService = bmiCalculator;
+            this.BMIConsultant = bmiConsultant;
         }
 
         /// <summary>
         /// Get or set IBMICalculatorService
         /// </summary>
         public IBMICalculatorService BMICalculatorService { get; set; }
+
+        public IBMIConsultant BMIConsultant { get; set; }
 
         /// <summary>
         /// 執行計算BMI值主程式
@@ -37,7 +41,11 @@ namespace OOBMICalculator.Services
 
             var BMI = this.BMICalculatorService.Calculating(weight, tall);
 
+            var report = this.BMIConsultant.GetConsultantReport(BMI);
+
             Console.WriteLine($"身高:{tall}, 體重:{weight}, BMI:{BMI:0.000}");
+
+            Console.WriteLine($"健康評語:{report}");
 
             Console.Read();
         }
