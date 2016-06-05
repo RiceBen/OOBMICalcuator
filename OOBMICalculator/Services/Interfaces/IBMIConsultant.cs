@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OOBMICalculator.Services.Interfaces
 {
@@ -15,5 +13,13 @@ namespace OOBMICalculator.Services.Interfaces
         /// <param name="bmi">BMI數值</param>
         /// <returns>建議</returns>
         string GetConsultantReport(double bmi);
+
+        /// <summary>
+        /// 計算BMI
+        /// </summary>
+        /// <param name="weight">體重</param>
+        /// <param name="tall">身高</param>
+        /// <returns>BMI</returns>
+        double CalculatingBMI(decimal weight, decimal tall);
     }
 }
