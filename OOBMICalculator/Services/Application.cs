@@ -1,4 +1,5 @@
 ﻿using System;
+using OOBMICalculator.Entity;
 using OOBMICalculator.Services.Interfaces;
 
 namespace OOBMICalculator.Services
@@ -27,6 +28,10 @@ namespace OOBMICalculator.Services
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("請輸入性別  男(Male), 女(Female)");
+            GenderEnum gender;
+            Enum.TryParse<GenderEnum>(Console.ReadLine(), out gender);
+
             Console.WriteLine("請輸入身高(cm)?");
             decimal tall;
             decimal.TryParse(Console.ReadLine(), out tall);
@@ -35,11 +40,9 @@ namespace OOBMICalculator.Services
             decimal weight;
             decimal.TryParse(Console.ReadLine(), out weight);
 
-            var BMI = this.BMIConsultant.CalculatingBMI(weight, tall);
+            var human1 = new Human { Weight = weight, Tall = tall, Gender = gender };
 
-            var report = this.BMIConsultant.GetConsultantReport(BMI);
-
-            Console.WriteLine($"身高:{tall}, 體重:{weight}, BMI:{BMI:0.000}");
+            var report = this.BMIConsultant.GetBMIHealthyCheckReport(human1);
 
             Console.WriteLine($"健康評語:{report}");
 

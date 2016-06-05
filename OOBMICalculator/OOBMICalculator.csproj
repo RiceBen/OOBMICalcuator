@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutofacConfiger.cs" />
+    <Compile Include="Entity\GenderEnum.cs" />
+    <Compile Include="Entity\Human.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Application.cs" />

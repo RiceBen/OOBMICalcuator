@@ -1,4 +1,5 @@
 ﻿using System;
+using OOBMICalculator.Entity;
 
 namespace OOBMICalculator.Services.Interfaces
 {
@@ -8,18 +9,10 @@ namespace OOBMICalculator.Services.Interfaces
     public interface IBMIConsultant
     {
         /// <summary>
-        /// 取得BMI建議
+        /// 取得BMI健康管理報告
         /// </summary>
-        /// <param name="bmi">BMI數值</param>
-        /// <returns>建議</returns>
-        string GetConsultantReport(double bmi);
-
-        /// <summary>
-        /// 計算BMI
-        /// </summary>
-        /// <param name="weight">體重</param>
-        /// <param name="tall">身高</param>
-        /// <returns>BMI</returns>
-        double CalculatingBMI(decimal weight, decimal tall);
+        /// <param name="human">案例資料</param>
+        /// <returns>報告</returns>
+        string GetBMIHealthyCheckReport(Human human);
     }
 }

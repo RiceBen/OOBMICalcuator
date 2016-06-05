@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OOBMICalculator.Entity;
 using OOBMICalculator.Services.Interfaces;
 
 namespace OOBMICalculator.Services
@@ -25,14 +26,17 @@ namespace OOBMICalculator.Services
         public IBMICalculatorService BMICalculatorService { get; set; }
 
         /// <summary>
-        /// 計算BMI
+        /// 取得BMI健康管理報告
         /// </summary>
-        /// <param name="weight">體重</param>
-        /// <param name="tall">身高</param>
-        /// <returns>BMI</returns>
-        public double CalculatingBMI(decimal weight, decimal tall)
+        /// <param name="human">案例資料</param>
+        /// <returns>報告</returns>
+        public string GetBMIHealthyCheckReport(Human human)
         {
-            return this.BMICalculatorService.Calculating(weight, tall);
+            var bmi = this.BMICalculatorService.Calculating(human.Weight, human.Tall);
+
+            var report = this.GetConsultantReport(bmi);
+
+            return report;
         }
 
         /// <summary>
@@ -40,7 +44,7 @@ namespace OOBMICalculator.Services
         /// </summary>
         /// <param name="bmi">BMI數值</param>
         /// <returns>報告</returns>
-        public string GetConsultantReport(double bmi)
+        private string GetConsultantReport(double bmi)
         {
             if (bmi <= 18)
             {
