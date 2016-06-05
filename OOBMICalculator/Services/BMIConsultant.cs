@@ -34,7 +34,7 @@ namespace OOBMICalculator.Services
         {
             var bmi = this.BMICalculatorService.Calculating(human.Weight, human.Tall);
 
-            var report = this.GetConsultantReport(bmi);
+            var report = this.GetConsultantReport(bmi, human.Gender);
 
             return report;
         }
@@ -43,16 +43,17 @@ namespace OOBMICalculator.Services
         /// 取得顧問報告
         /// </summary>
         /// <param name="bmi">BMI數值</param>
+        /// <param name="gender">性別</param>
         /// <returns>報告</returns>
-        private string GetConsultantReport(double bmi)
+        private string GetConsultantReport(double bmi, GenderEnum gender)
         {
             if (bmi <= 18)
             {
-                return "過瘦";
+                return gender == GenderEnum.Male ? "竹竿身材" : "模特兒身材";
             }
             else if (bmi >= 24)
             {
-                return "過胖";
+                return gender == GenderEnum.Male ? "神豬體型" : "小叮鈴身材";
             }
             else
             {
