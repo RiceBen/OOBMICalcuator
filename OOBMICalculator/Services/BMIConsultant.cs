@@ -34,9 +34,39 @@ namespace OOBMICalculator.Services
         {
             var bmi = this.BMICalculatorService.Calculating(human.Weight, human.Tall);
 
+            this.InitBound(human.Gender);
+
             var report = this.GetConsultantReport(bmi, human.Gender);
 
             return report;
+        }
+
+        /// <summary>
+        /// BMI 上限
+        /// </summary>
+        public double BMIUpperBound { get; private set; }
+
+        /// <summary>
+        /// BMI 下限
+        /// </summary>
+        public double BMILowerBound { get; private set; }
+
+        /// <summary>
+        /// 初始化男女BMI標準
+        /// </summary>
+        /// <param name="gender">性別</param>
+        private void InitBound(GenderEnum gender)
+        {
+            if (gender == GenderEnum.Male)
+            {
+                this.BMIUpperBound = 24d;
+                this.BMILowerBound = 20d;
+            }
+            else
+            {
+                this.BMIUpperBound = 22d;
+                this.BMILowerBound = 19d;
+            }
         }
 
         /// <summary>
@@ -47,11 +77,11 @@ namespace OOBMICalculator.Services
         /// <returns>報告</returns>
         private string GetConsultantReport(double bmi, GenderEnum gender)
         {
-            if (bmi <= 18)
+            if (bmi <= this.BMILowerBound)
             {
                 return gender == GenderEnum.Male ? "竹竿身材" : "模特兒身材";
             }
-            else if (bmi >= 24)
+            else if (bmi >= this.BMIUpperBound)
             {
                 return gender == GenderEnum.Male ? "神豬體型" : "小叮鈴身材";
             }
