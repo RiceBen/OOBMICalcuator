@@ -48,12 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutofacConfiger.cs" />
+    <Compile Include="Entity\GenderEnum.cs" />
+    <Compile Include="Entity\Human.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Application.cs" />
     <Compile Include="Services\BMICalculatorService.cs" />
+    <Compile Include="Services\BMIConsultant.cs" />
     <Compile Include="Services\Interfaces\IBMICalculatorService.cs" />
     <Compile Include="Services\Interfaces\IApplication.cs" />
+    <Compile Include="Services\Interfaces\IBMIConsultant.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -22,6 +22,8 @@ namespace OOBMICalculator.Services
 
             var bmi = (double)weight / Math.Pow((double)tall, 2.0);
 
+            Console.WriteLine($"身高:{tall}, 體重:{weight}, BMI:{bmi:0.000}");
+
             return bmi;
         }
 
